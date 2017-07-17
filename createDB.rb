@@ -59,3 +59,11 @@ SQL
 
 # Insert starting data
 users = ["userA@company1.com", "userB@company2.com","userC@company1.com"]
+
+# Find a few rows
+sqlSelect = <<-SQL
+  SELECT * FROM user;
+SQL
+db.execute( sqlSelect ) do |row|
+  p row
+end
