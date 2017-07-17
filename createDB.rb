@@ -21,7 +21,6 @@ rows = db.execute <<-SQL
   DROP TABLE IF EXISTS subscription;
 SQL
 
-
 # Create new tables
 rows = db.execute <<-SQL
   CREATE TABLE user (
@@ -57,3 +56,6 @@ rows = db.execute <<-SQL
     json_processor_data BLOB
   ); 
 SQL
+
+# Insert starting data
+users = ["userA@company1.com", "userB@company2.com","userC@company1.com"]
