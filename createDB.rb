@@ -60,6 +60,10 @@ SQL
 # Insert starting data
 users = ["userA@company1.com", "userB@company2.com","userC@company1.com"]
 
+users.each do |user|
+  db.execute("INSERT INTO user VALUES (null, ?);", user)
+end
+
 # Find a few rows
 sqlSelect = <<-SQL
   SELECT * FROM user;
