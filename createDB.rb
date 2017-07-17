@@ -1,6 +1,27 @@
 #!/usr/bin/env ruby -w
 require "sqlite3"
 
+# Open a database
+db = SQLite3::Database.new "sqlite3.db"
+
+# Drop old tables
+rows = db.execute <<-SQL
+  DROP TABLE IF EXISTS user;
+SQL
+
+rows = db.execute <<-SQL
+  DROP TABLE IF EXISTS processor;
+SQL
+
+rows = db.execute <<-SQL
+  DROP TABLE IF EXISTS pmt_interval;
+SQL
+
+rows = db.execute <<-SQL
+  DROP TABLE IF EXISTS subscription;
+SQL
+
+
 # Create new tables
 rows = db.execute <<-SQL
   CREATE TABLE user (
@@ -26,6 +47,7 @@ rows = db.execute <<-SQL
 SQL
 
 rows = db.execute <<-SQL
+  CREATE TABLE subscription (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id int,
     processor_id int,
