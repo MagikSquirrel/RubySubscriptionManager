@@ -8,3 +8,11 @@ rows = db.execute <<-SQL
     email varchar(64)
   );
 SQL
+
+rows = db.execute <<-SQL
+  CREATE TABLE processor (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name varchar(32),
+    type varchar(16)
+  );
+SQL
