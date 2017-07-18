@@ -84,10 +84,10 @@ sqlSelect = <<-SQL
   SELECT u.email, i.type, p.name, p.type,
     strftime("%m-%d-%Y", lastPayment, 'unixepoch') AS lastPayment,
     strftime("%m-%d-%Y", expiration, 'unixepoch') AS expiration
-  FROM subscription AS pu
-    INNER JOIN user AS u ON u.id = pu.user_id
-    INNER JOIN processor AS p ON p.id = pu.processor_id
-    INNER JOIN pmt_interval AS i ON i.id = pu.pmt_interval_id
+  FROM subscription AS s
+    INNER JOIN user AS u ON u.id = s.user_id
+    INNER JOIN processor AS p ON p.id = s.processor_id
+    INNER JOIN pmt_interval AS i ON i.id = s.pmt_interval_id
 SQL
 db.execute( sqlSelect ) do |row|
   p row
