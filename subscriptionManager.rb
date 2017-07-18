@@ -22,9 +22,21 @@ class Charger
   
   def submitPayment(provider, email, account, amount, txType) 
   
-    url = "https://fakecreditcard.com/charge/"
-    headers = {'subscriber_id' => account}
-    post_data = {'amount' => amount}
+    #Pick the specific URL based on the provider type
+    case provider.type
+      when "credit"
+        url = "https://fakecreditcard.com/charge/"
+        headers = {'subscriber_id' => account}
+        post_data = {'amount' => amount}
+      when "online"
+        url = "https://www.privateinternetaccess.com/paypal"
+        post_data = {
+          'subscriber_id' => account,
+          'amount' => amount,
+          'email' => email, 
+          'transaction_type' => txType
+        }
+    end
 
     # Build the request and send it to the API
   html_request = Net::HTTP.new(provider.apiUrl, 443)   
