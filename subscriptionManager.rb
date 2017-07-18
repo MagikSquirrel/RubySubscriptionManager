@@ -22,12 +22,14 @@ class Charger
   
   def submitPayment(provider, email, account, amount, txType) 
   
-
+    url = "https://fakecreditcard.com/charge/"
+    headers = {'subscriber_id' => account}
+    post_data = {'amount' => amount}
 
     # Build the request and send it to the API
   html_request = Net::HTTP.new(provider.apiUrl, 443)   
 
-  response = html_request.post("https://fakecreditcard.com/charge/", post_data, headers)
+  response = html_request.post(url, post_data, headers)
   response_string = response.body.to_s
   puts response_string
   
