@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby -w
 
 #Class that reaches out to the processor's payment network to process payments
-class  @@method
+class Charger
+  @@method
   @@cents #Use cents to not have to deal with floats
   
   def method
@@ -18,6 +19,20 @@ class  @@method
     RENEWAL,
     FAILED_CHARGE
   ]
+  
+  def submitPayment(provider, email, account, amount, txType) 
+  
+
+
+    # Build the request and send it to the API
+  html_request = Net::HTTP.new(provider.apiUrl, 443)   
+
+  response = html_request.post("https://fakecreditcard.com/charge/", post_data, headers)
+  response_string = response.body.to_s
+  puts response_string
+  
+  end
+
 end
 
 #Class that associates with a payment provider
@@ -72,3 +87,4 @@ end
 class User
 
 end
+
